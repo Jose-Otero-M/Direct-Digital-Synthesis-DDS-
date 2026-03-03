@@ -1,10 +1,11 @@
 import numpy as np
 
+# Input parameters
 bits_for_phase = 10
 bits_for_amplitude = 10
 quarter_sine_lut = True
 
-# Vector de fases
+# Phase vector
 if quarter_sine_lut:
     num_points = 2**(bits_for_phase - 2)  # (2^bits_for_phase) / 4
     steps_for_phase = np.linspace(0, np.pi/2, num_points, endpoint=False)
@@ -44,6 +45,8 @@ print(f"Maximum mapped value: {sin_values_final.max()}")
 print(f"5 initial values: {sin_values_final[:5]}")
 print(f"5 last values: {sin_values_final[-5:]}\n")
 
+
+# VHDL Template
 with open("sine_lut_" + str(bits_for_phase) + "x" + str(bits_for_amplitude) + "_pkg.vhd", "w") as f:
     f.write(
 '''library IEEE;
@@ -70,4 +73,5 @@ package sine_lut_pkg is\n''')
 end package sine_lut_pkg;
 
 ''')
+
 
