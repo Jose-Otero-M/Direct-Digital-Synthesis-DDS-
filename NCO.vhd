@@ -6,14 +6,14 @@ use IEEE.NUMERIC_STD.ALL;
 entity NCO is
     generic(
         FTW_WIDTH : natural := 32;
-        ADDR_BITS : natural := 10
+        PHASE_WIDTH : natural := 10
     );
     Port ( CLK : in STD_LOGIC;
            RST_n : in STD_LOGIC;
            ENABLE : in STD_LOGIC;
            FTW_IN : in unsigned(FTW_WIDTH-1 downto 0);
            OUT_SQ : out std_logic;
-           PHASE_OUT     : out unsigned(ADDR_BITS-1 downto 0) := (others => '0') -- DDS/NCO phase out for LUT.
+           PHASE_OUT     : out unsigned(PHASE_WIDTH-1 downto 0) := (others => '0') -- DDS/NCO phase out for LUT.
            );
            -- Example: For f_clk=100 MHz, FTW_WIDTH=32:
            -- FTW_IN = round(f_out / 100e6 * 2^32)
@@ -39,6 +39,6 @@ begin
     
     -- Outputs.
     OUT_SQ    <= std_logic(phase_acc(FTW_WIDTH-1)); -- MSB of phase_acc in order to produce a square wave of FTW duration
-    PHASE_OUT <= phase_acc(phase_acc'high downto phase_acc'length - ADDR_BITS); -- For extern LUT/CORDIC.
+    PHASE_OUT <= phase_acc(phase_acc'high downto phase_acc'length - PHASE_WIDTH); -- For extern LUT/CORDIC.
 
 end Behavioral;
