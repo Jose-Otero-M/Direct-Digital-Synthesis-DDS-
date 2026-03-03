@@ -1,6 +1,6 @@
 import numpy as np
 
-bits_for_phase = 8
+bits_for_phase = 10
 bits_for_amplitude = 10
 quarter_sine_lut = True
 
@@ -68,4 +68,5 @@ package sine_lut_pkg is\n''')
     f.write('''
 \t);
 end package sine_lut_pkg;
+
 ''')
