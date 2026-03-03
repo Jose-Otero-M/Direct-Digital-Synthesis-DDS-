@@ -5,17 +5,17 @@ use work.sine_lut_pkg.all;
 
 entity quarter_sine is
     generic(
-        ADDR_BITS : natural := 10; -- Phase bits
+        PHASE_WIDTH : natural := 10; -- Phase bits
         AMP_BITS  : natural := 10  -- Amplitude bits
     );
     
     Port ( CLK      : in STD_LOGIC;
-           ADDR     : in unsigned(ADDR_BITS-1 downto 0);      -- Addresing bits comes from phase accumulator
+           ADDR     : in unsigned(PHASE_WIDTH-1 downto 0);      -- Addresing bits comes from phase accumulator
            SINE_OUT : out signed(AMP_BITS-1 downto 0));
 end quarter_sine;
 
 architecture Behavioral of quarter_sine is
-    constant QUARTER_BITS : natural := ADDR_BITS-2; -- Addressing bits to cover all length in quarter sine LUT
+    constant QUARTER_BITS : natural := PHASE_WIDTH-2; -- Addressing bits to cover all length in quarter sine LUT
     signal  quadrant      : unsigned(1 downto 0);
     signal index_in       : unsigned(QUARTER_BITS-1 downto 0);
     signal index_mirror   : unsigned(index_in'range);
