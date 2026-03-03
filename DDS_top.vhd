@@ -7,7 +7,7 @@ entity DDS is
     generic(
         FTW_WIDTH : natural := 32;        -- Frequency Tuning Word width.
         PHASE_WIDTH : natural := 10;
-        AMP_WIDTH  : natural := 11
+        AMP_WIDTH  : natural := 10
     );
     Port ( CLK      : in STD_LOGIC;
            RST_n    : in STD_LOGIC;
