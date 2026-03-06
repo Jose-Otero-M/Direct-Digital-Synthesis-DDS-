@@ -10,7 +10,7 @@ entity DDS is
         AMP_WIDTH  : natural := 10
     );
     Port ( CLK      : in STD_LOGIC;
-           RST_n    : in STD_LOGIC;
+           RST      : in STD_LOGIC;
            ENABLE   : in STD_LOGIC;
            FTW_IN   : in unsigned(FTW_WIDTH-1 downto 0);        -- Frequency Tuning Word input.
            POW_IN   : in unsigned(PHASE_WIDTH-1 downto 0);      -- Phase Offset Word.
@@ -36,7 +36,7 @@ begin
         )
         port map(
             CLK => CLK,
-            RST_n => RST_n,
+            RST => RST_n,
             ENABLE => ENABLE,
             FTW_IN => FTW_IN,
             OUT_SQ => OUT_SQ,
